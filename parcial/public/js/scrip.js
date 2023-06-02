@@ -1,11 +1,28 @@
-const $btnSignUp = document.querySelector('.sign-up-btn'),
-  $btnSignIn = document.querySelector('.sign-in-btn'),
-  $signIn = document.querySelector('.sign-in'),
-  $signUp = document.querySelector('.sign-up');
+$(document).ready(function () {
+  const $btnSignUp = $('.sign-up-btn');
+  const $btnSignIn = $('.sign-in-btn');
+  const $signIn = $('.sign-in');
+  const $signUp = $('.sign-up');
 
-document.addEventListener('click', e => {
-  if (e.target === $btnSignIn || e.target === $btnSignUp) {
-    $signIn.classList.toggle('active');
-    $signUp.classList.toggle('active')
-  }
+  $(document).on('click', function (e) {
+    if (e.target === $btnSignIn[0] || e.target === $btnSignUp[0]) {
+      $signIn.toggleClass('active');
+      $signUp.toggleClass('active');
+    }
+  });
+
+  $('#enlaceRegistro').on('click', function (e) {
+    e.preventDefault();
+    $('#Registrarse').click();
+  });
+
+  $('#Registrarse').on('click', function () {
+    $('.sign-up').toggleClass('active');
+    $('.sign-in').toggleClass('active');
+  });
+
+  $('#btnIniciarSesion').on('click', function () {
+    $('.sign-in').toggleClass('active');
+    $('.sign-up').toggleClass('active');
+  });
 });
