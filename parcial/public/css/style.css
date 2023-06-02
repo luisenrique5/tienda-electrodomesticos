@@ -10,7 +10,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("/home/luisito/universidad/parcial/public/img/1420599-new-hacker-background-1920x1080.jpg");
+  background-image: url("../img/1420599-new-hacker-background-1920x1080.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

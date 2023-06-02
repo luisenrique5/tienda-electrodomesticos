@@ -13,12 +13,40 @@ $(document).ready(function () {
 
   $('#enlaceRegistro').on('click', function (e) {
     e.preventDefault();
-    $('#Registrarse').click();
+    $('#RegistrarseBoton').click();
   });
 
-  $('#Registrarse').on('click', function () {
-    $('.sign-up').toggleClass('active');
-    $('.sign-in').toggleClass('active');
+  // Envía los datos del formulario al servidor para el registro
+  $('#registrarUsuario').on('click', function () {
+    console.log("aqui llego")
+    const nombre = $('#nombre').val();
+    const apellido = $('#apellido').val();
+    const email = $('#email').val();
+    const direccion = $('#direccion').val();
+    const cargo = $('#cargo').val();
+    const salario = $('#salario').val();
+    const password = $('#password').val();
+
+    $.ajax({
+      url: '/register',
+      method: 'POST',
+      data: {
+        nombre,
+        apellido,
+        email,
+        direccion,
+        cargo,
+        salario,
+        password
+      },
+      success: function (response) {
+        alert('Registro exitoso');
+      },
+      error: function (error) {
+        console.error(error);
+        alert('Error al registrar');
+      }
+    });
   });
 
   $('#btnIniciarSesion').on('click', function () {
@@ -26,3 +54,4 @@ $(document).ready(function () {
     $('.sign-up').toggleClass('active');
   });
 });
+
