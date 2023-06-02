@@ -18,7 +18,6 @@ $(document).ready(function () {
 
   // Envía los datos del formulario al servidor para el registro
   $('#registrarUsuario').on('click', function () {
-    console.log("aqui llego")
     const nombre = $('#nombre').val();
     const apellido = $('#apellido').val();
     const email = $('#email').val();
@@ -26,23 +25,30 @@ $(document).ready(function () {
     const cargo = $('#cargo').val();
     const salario = $('#salario').val();
     const password = $('#password').val();
+    const fotoPerfil = $('#fotoPerfil')[0].files[0];
 
+    // Crear un objeto FormData
+    var formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('apellido', apellido);
+    formData.append('email', email);
+    formData.append('direccion', direccion);
+    formData.append('cargo', cargo);
+    formData.append('salario', salario);
+    formData.append('password', password);
+    formData.append('fotoPerfil', fotoPerfil);
+
+    // Enviar la solicitud AJAX
     $.ajax({
       url: '/register',
-      method: 'POST',
-      data: {
-        nombre,
-        apellido,
-        email,
-        direccion,
-        cargo,
-        salario,
-        password
-      },
-      success: function (response) {
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
         alert('Registro exitoso');
       },
-      error: function (error) {
+      error: function(error) {
         console.error(error);
         alert('Error al registrar');
       }
@@ -54,4 +60,3 @@ $(document).ready(function () {
     $('.sign-up').toggleClass('active');
   });
 });
-
